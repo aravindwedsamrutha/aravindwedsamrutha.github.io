@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aravind & Amrutha Wedding</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cookie&family=Felipa&family=Permanent+Marker&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1f2a37;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Felipa', serif;
+            font-weight: 400;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            background: url('images/hero.jpg') center/cover no-repeat;
+            background-position: center top;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .hero h1 {
+            position: relative;
+            bottom: 36vh;
+            color: #fff;
+            font-size: clamp(70px, 6vw, 64px);
+            opacity: 0.5;
+            transform: translateY(40px);
+            animation: fadeUp 1.5s ease forwards;
+            font-family: "Cookie", cursive;
+        }
+
+        /* DETAILS */
+        .details {
+            background: #eaffd7;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .details h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            margin-bottom: 20px;
+        }
+
+        .details h2.invited {
+            font-family: 'Cookie';
+            font-size: 50px;
+        }
+
+        .grid {
+            max-width: 700px;
+            margin: auto;
+            z-index: 1;
+        }
+
+        .designs {
+            z-index: 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .designs .pattern1 {
+            background-image: url('images/Henna-Tattoo.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            bottom: 50vh;
+            left: 0;
+            right: 50vw;
+            opacity: 0.2;
+        }
+
+        .event {
+            margin: 30px 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .event.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event h3 {
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .event p {
+            font-size: 22px;
+            color: #4b5563;
+        }
+
+        .venue {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        iframe {
+            margin-top: 30px;
+            width: 100%;
+            height: 300px;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        /* FINAL IMAGE */
+        .final {
+            height: 100vh;
+            background: url('images/couple.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .final h2 {
+
+            border-radius: 12px;
+            font-size: clamp(70px, 4vw, 40px);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+            padding: 17vh 0;
+        }
+
+        .final.show h2 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .final-gradient {
+            position: absolute;
+            background: linear-gradient(0deg, rgb(234, 255, 215, 0), rgb(234, 255, 215, 1));
+            top: 0;
+            bottom: 50vh;
+            left: 0;
+            right: 0;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* SMALL SCREENS */
+        @media(max-width:600px) {
+            .details {
+                padding: 60px 15px;
+            }
+
+            .event p {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Aravind & <br> Amrutha</h1>
+    </section>
+
+    <!-- DETAILS -->
+    <section class="details">
+        <div class="designs">
+            <div class="pattern1"></div>
+        </div>
+        <div class="grid">
+            <h2 class="invited">You're invited to our wedding!</h2>
+
+            <div class="event">
+                <h3>Reception</h3>
+                <p>7:00 PM onwards<br>June 06, 2026</p>
+            </div>
+
+            <div class="event">
+                <h3>Wedding</h3>
+                <p>8:30 AM onwards<br>June 07, 2026</p>
+            </div>
+            <h2 style="font-size: 30px;letter-spacing: 2px;">Happening At</h2>
+            <div class="venue">
+                Yoga Kalyana Mandapam,<br>
+                Amma Mandapam Road,<br>
+                Srirangam, Trichy - 620006
+            </div>
+
+            <iframe src="https://www.google.com/maps?q=Yoga+Kalyana+Mandapam+Trichy&output=embed"></iframe>
+        </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="final">
+        <div class="final-gradient">
+            <h2>We hope you'll be there!</h2>
+        </div>
+
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.event, .final').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>
