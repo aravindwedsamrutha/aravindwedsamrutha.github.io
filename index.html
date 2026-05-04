@@ -69,10 +69,35 @@
 
         /* DETAILS */
         .details {
-            background: #eaffd7;
-            padding: 80px 20px;
-            text-align: center;
-        }
+    background-color: #eaffd7;
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Henna background with opacity */
+.details::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background: url('images/Henna-Tattoo.svg') no-repeat center;
+    background-size: contain;
+
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Make sure content stays above */
+.details .grid {
+    position: relative;
+    z-index: 1;
+}
 
         .details h2 {
             font-size: clamp(28px, 4vw, 42px);
@@ -137,6 +162,22 @@
         .venue {
             font-size: 18px;
             line-height: 1.8;
+        }
+
+        .event button {
+            margin-top: 12px;
+            padding: 10px 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 6px;
+            background-color: #1f2a37;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .event button:hover {
+            background-color: #374151;
         }
 
         iframe {
@@ -230,6 +271,14 @@
             const text = encodeURIComponent("You're invited to our wedding! 💍 Check details here: ");
             window.open(`https://wa.me/?text=${text}${url}`, '_blank');
         }
+        function addToCalendar(title, start, end) {
+            const details = encodeURIComponent("Aravind & Amrutha Wedding");
+            const location = encodeURIComponent("Yoga Kalyana Mandapam, Srirangam, Trichy");
+
+            const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
+
+            window.open(url, '_blank');
+        }
     </script>
 </head>
 <a href="#" class="whatsapp-float" onclick="shareOnWhatsApp()">
@@ -245,20 +294,24 @@
 
     <!-- DETAILS -->
     <section class="details">
-        <div class="designs">
-            <div class="pattern1"></div>
-        </div>
         <div class="grid">
             <h2 class="invited">You're invited to our wedding!</h2>
 
             <div class="event">
                 <h3>Reception</h3>
                 <p>7:00 PM onwards<br>June 06, 2026</p>
+                <button
+                    onclick="addToCalendar('Aravind and Amrutha\'s Reception', '20260606T190000', '20260606T220000')">
+                    Save to Calendar
+                </button>
             </div>
 
             <div class="event">
                 <h3>Wedding</h3>
                 <p>8:30 AM onwards<br>June 07, 2026</p>
+                <button onclick="addToCalendar('Aravind and Amrutha\'s Wedding', '20260607T083000', '20260607T120000')">
+                    Save to Calendar
+                </button>
             </div>
             <h2 style="font-size: 30px;letter-spacing: 2px;">Happening At</h2>
             <div class="venue">
