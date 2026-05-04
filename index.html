@@ -69,35 +69,35 @@
 
         /* DETAILS */
         .details {
-    background-color: #eaffd7;
-    padding: 80px 20px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
+            background-color: #eaffd7;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Henna background with opacity */
-.details::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    
-    background: url('images/Henna-Tattoo.svg') no-repeat center;
-    background-size: contain;
+        /* Henna background with opacity */
+        .details::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
 
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 0;
-}
+            background: url('images/Henna-Tattoo.svg') no-repeat center;
+            background-size: contain;
 
-/* Make sure content stays above */
-.details .grid {
-    position: relative;
-    z-index: 1;
-}
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Make sure content stays above */
+        .details .grid {
+            position: relative;
+            z-index: 1;
+        }
 
         .details h2 {
             font-size: clamp(28px, 4vw, 42px);
@@ -271,13 +271,58 @@
             const text = encodeURIComponent("You're invited to our wedding! 💍 Check details here: ");
             window.open(`https://wa.me/?text=${text}${url}`, '_blank');
         }
-        function addToCalendar(title, start, end) {
-            const details = encodeURIComponent("Aravind & Amrutha Wedding");
-            const location = encodeURIComponent("Yoga Kalyana Mandapam, Srirangam, Trichy");
+        function downloadICS(title, start, end) {
+            const location = "Yoga Kalyana Mandapam, Srirangam, Trichy";
+            const description = "Aravind & Amrutha Wedding";
 
-            const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
+            function formatIST(dateTime) {
+                const date = new Date(dateTime);
+                const yyyy = date.getFullYear();
+                const mm = String(date.getMonth() + 1).padStart(2, '0');
+                const dd = String(date.getDate()).padStart(2, '0');
+                const hh = String(date.getHours()).padStart(2, '0');
+                const min = String(date.getMinutes()).padStart(2, '0');
+                const ss = "00";
+                return `${yyyy}${mm}${dd}T${hh}${min}${ss}`;
+            }
 
-            window.open(url, '_blank');
+            const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:${title}
+DTSTART;TZID=Asia/Kolkata:${formatIST(start)}
+DTEND;TZID=Asia/Kolkata:${formatIST(end)}
+LOCATION:${location}
+DESCRIPTION:${description}
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
+    `.trim();
+
+            const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8;" });
+            const link = document.createElement("a");
+
+            link.href = URL.createObjectURL(blob);
+            link.download = `${title}.ics`;
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </head>
@@ -300,8 +345,7 @@
             <div class="event">
                 <h3>Reception</h3>
                 <p>7:00 PM onwards<br>June 06, 2026</p>
-                <button
-                    onclick="addToCalendar('Aravind and Amrutha\'s Reception', '20260606T190000', '20260606T220000')">
+                <button onclick="downloadICS('Reception', '2026-06-06T19:00:00', '2026-06-06T22:00:00')">
                     Save to Calendar
                 </button>
             </div>
@@ -309,7 +353,7 @@
             <div class="event">
                 <h3>Wedding</h3>
                 <p>8:30 AM onwards<br>June 07, 2026</p>
-                <button onclick="addToCalendar('Aravind and Amrutha\'s Wedding', '20260607T083000', '20260607T120000')">
+                ]<button onclick="downloadICS('Wedding', '2026-06-07T08:30:00', '2026-06-07T12:00:00')">
                     Save to Calendar
                 </button>
             </div>
