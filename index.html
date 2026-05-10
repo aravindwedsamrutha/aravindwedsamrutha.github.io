@@ -9,9 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cookie&family=Felipa&family=Permanent+Marker&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-        rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Felipa&family=Permanent+Marker&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+DE+SAS:wght@100..400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -47,6 +45,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            flex-direction: column;
         }
 
         .hero::after {
@@ -56,7 +55,7 @@
             background: rgba(0, 0, 0, 0.25);
         }
 
-        .hero h1 {
+        .hero h1.names {
             position: relative;
             bottom: 36vh;
             color: #fff;
@@ -67,6 +66,17 @@
             font-family: "Cookie", cursive;
         }
 
+        .hero h1.hashtag {
+            position: relative;
+            bottom: -20vh;
+            color: #fff;
+            font-size: clamp(35px, 6vw, 64px);
+            opacity: 0.5;
+            transform: translateY(40px);
+            animation: fadeUp 1.5s ease forwards;
+            font-family: "Playfair Display", serif;
+            font-weight: bold;
+        }
         /* DETAILS */
         .details {
             background-color: #eaffd7;
@@ -198,10 +208,15 @@
             text-align: center;
         }
 
-        .final h2 {
+        
+        .playwrite-de-sas {
+        font-family: "Playfair Display", serif;
+        }
 
+        .final h2 {
+            font-family: 'Cookie';
             border-radius: 12px;
-            font-size: clamp(70px, 4vw, 40px);
+            font-size: clamp(50px, 4vw, 40px);
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
@@ -383,7 +398,9 @@ END:VCALENDAR
 
     <!-- HERO -->
     <section class="hero">
-        <h1>Aravind & <br> Amrutha</h1>
+        <h1 class="names">Aravind & <br> Amrutha</h1>
+        <br>
+        <h1 class="hashtag">#AAwinkalyanam</h1>
     </section>
 
     <!-- DETAILS -->
@@ -401,7 +418,7 @@ END:VCALENDAR
             </div>
 
             <div class="event">
-                <h3>Reception</h3>
+                <h3 class="playwrite-de-sas">Reception</h3>
                 <p>7:00 PM onwards<br>June 06, 2026</p>
                 <button onclick="downloadICS('Reception', '2026-06-06T19:00:00', '2026-06-06T22:00:00')">
                     Save to Calendar
@@ -409,13 +426,13 @@ END:VCALENDAR
             </div>
 
             <div class="event">
-                <h3>Wedding</h3>
+                <h3 class="playwrite-de-sas">Wedding</h3>
                 <p>8:30 AM onwards<br>June 07, 2026</p>
                 ]<button onclick="downloadICS('Wedding', '2026-06-07T08:30:00', '2026-06-07T12:00:00')">
                     Save to Calendar
                 </button>
             </div>
-            <h2 style="font-size: 30px;letter-spacing: 2px;">Happening At</h2>
+            <h2 style="font-size: 30px;letter-spacing: 2px;" class="playwrite-de-sas">Happening At</h2>
             <div class="venue">
                 Yoga Kalyana Mandapam,<br>
                 Amma Mandapam Road,<br>
